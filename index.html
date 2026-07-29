@@ -15,15 +15,14 @@ n.callMethod.apply(n,arguments):n.queue.push(arguments)};
 if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
 n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window,document,'script',
+s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1640124793913005');
+fbq('init', '1318185053260541');
 fbq('track', 'PageView');
 </script>
-<noscript>
-<img height="1" width="1"
-src="https://www.facebook.com/tr?id=1640124793913005&ev=PageView&noscript=1"/>
-</noscript>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1318185053260541&ev=PageView&noscript=1"
+/></noscript>
 <!-- End Meta Pixel Code -->
 <style>
   :root{
@@ -261,7 +260,7 @@ src="https://www.facebook.com/tr?id=1640124793913005&ev=PageView&noscript=1"/>
 <nav>
   <div class="wrap">
     <div class="brand"><span class="dot"></span><div><div class="brand-text">MULLER ARMS</div><div class="brand-sub">Стрілецький клуб</div></div></div>
-    <a href="#final" class="nav-cta">Залишити заявку</a>
+    <a href="#final" class="nav-cta" onclick="trackInitiateCheckout()">Залишити заявку</a>
   </div>
 </nav>
 
@@ -604,6 +603,14 @@ src="https://www.facebook.com/tr?id=1640124793913005&ev=PageView&noscript=1"/>
 </footer>
 
 <script>
+  // ==== Meta Pixel: допоміжна функція для трекання Lead на кнопках запису ====
+  function trackLead(){
+    if(typeof fbq === 'function'){ fbq('track', 'Lead'); }
+  }
+  function trackInitiateCheckout(){
+    if(typeof fbq === 'function'){ fbq('track', 'InitiateCheckout'); }
+  }
+
   // ==== Валідація форм: кнопка неактивна, поки не заповнено коректно ====
   function normalizePhone(v){
     return v.replace(/[^\d+]/g, '');
@@ -637,11 +644,11 @@ src="https://www.facebook.com/tr?id=1640124793913005&ev=PageView&noscript=1"/>
     btn.disabled = !(nameOk && phoneOk);
   }
 
-  function tFaq(btn){
-    const item = btn.closest('.faq-item');
-    const wasOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
-    if(!wasOpen) item.classList.add('open');
+  function submitForm(formId, successId){
+    sendLeadToTelegram(formId);
+    document.getElementById(formId).style.display = 'none';
+    document.getElementById(successId).classList.add('show');
+    trackLead();
   }
 
   // ==== Telegram lead export (через безпечну serverless-функцію) ====
