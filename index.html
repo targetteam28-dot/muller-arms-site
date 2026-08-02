@@ -139,19 +139,20 @@ src="https://www.facebook.com/tr?id=1318185053260541&ev=PageView&noscript=1"
 
   section.weapons{padding:90px 0;}
   .weapon-carousel{position:relative;}
-  .weapon-scroll{display:flex; gap:14px; overflow-x:auto; padding:36px 0 10px; scroll-behavior:smooth; scrollbar-width:none;}
-  .weapon-scroll::-webkit-scrollbar{display:none;}
-  .weapon-chip{flex:none; background:var(--card); border:1px solid var(--border); border-radius:var(--r2); padding:16px; min-width:160px; text-align:center;}
-  .weapon-photo{background:var(--bg3); border:1px dashed var(--border2); border-radius:var(--r); height:90px; display:flex; align-items:center; justify-content:center; margin-bottom:12px;}
-  .weapon-photo span{font-family:var(--mono); font-size:10px; color:var(--ink3); text-transform:uppercase;}
-  .weapon-chip .lbl{font-size:13px; color:var(--ink2);}
+  .weapon-scroll{display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory; padding:36px 4px 16px; scroll-behavior:smooth; scrollbar-width:thin; -webkit-overflow-scrolling:touch;}
+  .weapon-chip{flex:0 0 68%; scroll-snap-align:center; background:var(--card); border:1px solid var(--border); border-radius:var(--r2); padding:0; overflow:hidden; text-align:center; transition:border-color .2s;}
+  .weapon-chip:hover{border-color:var(--accent);}
+  .weapon-photo{background:var(--bg3); aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; margin-bottom:0;}
+  .weapon-chip .lbl{font-size:13px; color:var(--ink2); padding:12px;}
+  @media(min-width:640px){ .weapon-chip{flex:0 0 38%;} }
+  @media(min-width:1000px){ .weapon-chip{flex:0 0 22%;} }
   .carousel-arrows{display:flex; gap:10px; justify-content:flex-end; margin-top:-6px;}
   .arrow-btn{width:40px; height:40px; border-radius:50%; border:1px solid var(--border2); background:var(--card); color:var(--ink); font-size:16px; cursor:pointer; transition:background .2s;}
   .arrow-btn:hover{background:var(--accent); color:var(--accent-ink); border-color:var(--accent);}
   .weapon-note{font-size:12.5px; color:var(--ink3); margin-top:14px; font-family:var(--mono);}
 
   section.trainers{padding:90px 0; background:var(--bg2); border-top:1px solid var(--border); border-bottom:1px solid var(--border);}
-  .trainer-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:44px;}
+  .trainer-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:44px;}
   .trainer-card{background:var(--bg); border:1px solid var(--border); border-radius:var(--r2); padding:26px; display:flex; gap:18px;}
   .trainer-photo{width:64px; height:64px; border-radius:50%; flex:none; background:linear-gradient(150deg, var(--border2), var(--bg3)); display:flex; align-items:center; justify-content:center; font-family:var(--display); font-weight:800; font-size:20px; color:var(--accent); border:1px solid var(--border2); position:relative; overflow:visible;}
   .trainer-upload-hint{position:absolute; bottom:-4px; right:-4px; width:24px; height:24px; border-radius:50%; background:var(--accent); color:var(--accent-ink); display:flex; align-items:center; justify-content:center; font-size:12px; border:2px solid var(--bg2); line-height:1; pointer-events:none;}
@@ -205,7 +206,7 @@ src="https://www.facebook.com/tr?id=1318185053260541&ev=PageView&noscript=1"
   .review-shot-box:hover{border-color:var(--accent);}
   .review-shot-box img{display:block; width:100%; height:auto;}
   @media(min-width:640px){ .review-shot-box{flex:0 0 46%;} }
-  @media(min-width:1000px){ .review-grid{overflow-x:visible;} .review-shot-box{flex:0 0 calc(25% - 12px);} }
+  @media(min-width:1000px){ .review-shot-box{flex:0 0 calc(31% - 12px);} }
 
   section.final{padding:110px 0; background:var(--bg3); text-align:center;}
   section.final h2{max-width:760px; margin:0 auto 18px; font-size:clamp(26px,3.6vw,40px);}
@@ -244,8 +245,6 @@ src="https://www.facebook.com/tr?id=1318185053260541&ev=PageView&noscript=1"
     .solve-chip p{font-size:17px;}
     .trainer-card{flex-direction:column; padding:20px;}
     .trainer-photo{width:56px; height:56px; font-size:17px;}
-    .weapon-chip{min-width:0; width:100%;}
-    .weapon-scroll{flex-direction:column;}
     .offer-visual{padding:24px;}
     .final-form-card{padding:24px;}
     .faq-q{font-size:15px;}
@@ -366,7 +365,7 @@ src="https://www.facebook.com/tr?id=1318185053260541&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="photo-placeholder reveal" style="padding:0; overflow:hidden; position:relative; aspect-ratio:3/2; min-height:0;">
-      <img src="muller-arms-team.webp" alt="Команда Muller Arms на полігоні" loading="lazy" style="display:block; position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+      <img src="muller-arms-team-2.jpg" alt="Команда Muller Arms на полігоні" loading="lazy" style="display:block; position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
     </div>
   </div>
 </section>
@@ -409,24 +408,50 @@ src="https://www.facebook.com/tr?id=1318185053260541&ev=PageView&noscript=1"
     <div class="eyebrow reveal"><span class="ring"></span>АСОРТИМЕНТ</div>
     <h2 class="reveal">Зброя, з якою можна працювати</h2>
     <div class="weapon-carousel reveal">
-      <div class="weapon-scroll" id="weaponScroll" style="overflow-x:visible; flex-wrap:wrap;">
-        <div class="weapon-chip" style="min-width:220px; flex:1; padding:0; overflow:hidden;">
-          <div class="weapon-photo" style="height:auto; aspect-ratio:4/3; background:none;">
-            <img src="weapon-pistol.webp" alt="Пістолет у кейсі на полігоні" loading="lazy" style="display:block; width:100%; height:100%; object-fit:cover;">
-          </div>
-          <div class="lbl" style="padding:10px 12px;">Пістолет</div>
+      <div class="weapon-scroll" id="weaponScroll">
+        <div class="weapon-chip">
+          <div class="weapon-photo"><img src="weapon-ak47.jpg" alt="АК-47" loading="lazy" style="display:block; width:100%; height:100%; object-fit:cover;"></div>
+          <div class="lbl">АК-47</div>
         </div>
-        <div class="weapon-chip" style="min-width:220px; flex:1; padding:0; overflow:hidden;">
-          <div class="weapon-photo" style="height:auto; aspect-ratio:4/3; background:none;">
-            <img src="weapon-carbine.webp" alt="Напівавтоматичний карабін у кейсі на полігоні" loading="lazy" style="display:block; width:100%; height:100%; object-fit:cover;">
-          </div>
-          <div class="lbl" style="padding:10px 12px;">Напівавтоматичний карабін</div>
+        <div class="weapon-chip">
+          <div class="weapon-photo"><img src="weapon-aks.jpg" alt="АКС" loading="lazy" style="display:block; width:100%; height:100%; object-fit:cover;"></div>
+          <div class="lbl">АКС</div>
         </div>
-        <div class="weapon-chip" style="min-width:220px; flex:1; padding:0; overflow:hidden;">
-          <div class="weapon-photo" style="height:auto; aspect-ratio:4/3; background:none;">
-            <img src="weapon-shotgun.webp" alt="Гладкоствольна рушниця у кейсі на полігоні" loading="lazy" style="display:block; width:100%; height:100%; object-fit:cover;">
-          </div>
-          <div class="lbl" style="padding:10px 12px;">Гладкоствольна рушниця</div>
+        <div class="weapon-chip">
+          <div class="weapon-photo"><img src="weapon-akm.jpg" alt="АКМ" loading="lazy" style="display:block; width:100%; height:100%; object-fit:cover;"></div>
+          <div class="lbl">АКМ</div>
+        </div>
+        <div class="weapon-chip">
+          <div class="weapon-photo"><img src="weapon-dpms.jpg" alt="DPMS" loading="lazy" style="display:block; width:100%; height:100%; object-fit:cover;"></div>
+          <div class="lbl">DPMS</div>
+        </div>
+        <div class="weapon-chip">
+          <div class="weapon-photo"><img src="weapon-fort12.jpg" alt="Fort-12" loading="lazy" style="display:block; width:100%; height:100%; object-fit:cover;"></div>
+          <div class="lbl">Fort-12</div>
+        </div>
+        <div class="weapon-chip">
+          <div class="weapon-photo"><img src="weapon-fort14.jpg" alt="Fort-14" loading="lazy" style="display:block; width:100%; height:100%; object-fit:cover;"></div>
+          <div class="lbl">Fort-14</div>
+        </div>
+        <div class="weapon-chip">
+          <div class="weapon-photo"><img src="weapon-lwrc.jpg" alt="LWRC" loading="lazy" style="display:block; width:100%; height:100%; object-fit:cover;"></div>
+          <div class="lbl">LWRC</div>
+        </div>
+        <div class="weapon-chip">
+          <div class="weapon-photo"><img src="weapon-mossberg500.jpg" alt="Mossberg 500" loading="lazy" style="display:block; width:100%; height:100%; object-fit:cover;"></div>
+          <div class="lbl">Mossberg 500</div>
+        </div>
+        <div class="weapon-chip">
+          <div class="weapon-photo"><img src="weapon-mossbergmmr.jpg" alt="Mossberg MMR" loading="lazy" style="display:block; width:100%; height:100%; object-fit:cover;"></div>
+          <div class="lbl">Mossberg MMR</div>
+        </div>
+        <div class="weapon-chip">
+          <div class="weapon-photo"><img src="weapon-perunx16.jpg" alt="Perun X16" loading="lazy" style="display:block; width:100%; height:100%; object-fit:cover;"></div>
+          <div class="lbl">Perun X16</div>
+        </div>
+        <div class="weapon-chip">
+          <div class="weapon-photo"><img src="weapon-savage.jpg" alt="Savage" loading="lazy" style="display:block; width:100%; height:100%; object-fit:cover;"></div>
+          <div class="lbl">Savage</div>
         </div>
       </div>
     </div>
@@ -440,20 +465,32 @@ src="https://www.facebook.com/tr?id=1318185053260541&ev=PageView&noscript=1"
     <div class="trainer-grid">
       <div class="trainer-card reveal">
         <div class="trainer-photo">
-          <img src="trainer-oleksandr-melnyk.webp" alt="Олександр Мельник" loading="lazy" style="display:block; position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border-radius:50%;">
+          <img src="trainer-oleksandr-melnyk-2.jpg" alt="Олександр Мельник" loading="lazy" style="display:block; position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border-radius:50%;">
         </div>
         <div>
-          <h3><a href="https://instagram.com/instructor_muller" target="_blank" rel="noopener" style="color:inherit;">Олександр Мельник</a></h3>
+          <h3>Олександр Мельник</h3>
+          <div style="font-family:var(--mono); font-size:12px; color:var(--accent); text-transform:uppercase; letter-spacing:.06em; margin-bottom:10px;">Тренер</div>
           <p>Стрільбою займається з 2006 року — пройшов службу в спецпідрозділі та приватних і державних службах безпеки, сертифікований суддя (Range Officer) та інструктор IPSC, неодноразовий призер змагань з тактико-прикладної й практичної стрільби. З 24 лютого по 20 березня 2022 захищав Київщину у складі групи добровольців, отримав важке поранення і після реабілітації повернувся до інструкторської діяльності.</p>
         </div>
       </div>
       <div class="trainer-card reveal">
         <div class="trainer-photo">
-          <img src="trainer-oleksandr-chyzh.webp" alt="Олександр Чиж" loading="lazy" style="display:block; position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border-radius:50%;">
+          <img src="trainer-oleksandr-chyzh-2.jpg" alt="Олександр Чиж" loading="lazy" style="display:block; position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border-radius:50%;">
         </div>
         <div>
-          <h3><a href="https://instagram.com/pozyvniy_chizh" target="_blank" rel="noopener" style="color:inherit;">Олександр Чиж</a></h3>
+          <h3>Олександр Чиж</h3>
+          <div style="font-family:var(--mono); font-size:12px; color:var(--accent); text-transform:uppercase; letter-spacing:.06em; margin-bottom:10px;">Тренер</div>
           <p>Має понад 11 років практичного досвіду в фізичній безпеці та поводженні зі зброєю, а також понад 8 років військового досвіду — працює з військовими підрозділами і має сертифікати з домедичної підготовки. Заняття з Олександром завжди змістовні та енергійні: він не дає розслабитись і поєднує тактико-прикладну стрільбу з фізичними навантаженнями.</p>
+        </div>
+      </div>
+      <div class="trainer-card reveal">
+        <div class="trainer-photo">
+          <img src="trainer-vladyslav-markovkin.jpg" alt="Владислав Марковкін" loading="lazy" style="display:block; position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border-radius:50%;">
+        </div>
+        <div>
+          <h3>Владислав Марковкін</h3>
+          <div style="font-family:var(--mono); font-size:12px; color:var(--accent); text-transform:uppercase; letter-spacing:.06em; margin-bottom:10px;">Інструктор</div>
+          <p>У стрілецьку справу прийшов у 18 років, навчаючись у Даніеля Ковальчука «Француза» та Максима Яловцова «Регбіста», а з початку повномасштабного вторгнення долучився до оборони Київщини й проходив службу в одному зі спецпідрозділів ГУР МО України, після чого розпочав інструкторську діяльність. Його мета — розвивати культуру відповідального поводження зі зброєю в Україні, щоб кожен міг безпечно й впевнено захистити себе та близьких і розвиватися у стрілецькому спорті.</p>
         </div>
       </div>
     </div>
@@ -536,6 +573,18 @@ src="https://www.facebook.com/tr?id=1318185053260541&ev=PageView&noscript=1"
       </div>
       <div class="review-shot-box reveal" style="transition-delay:.35s;">
         <img src="review-4.webp" alt="Відгук клієнта Muller Arms" loading="lazy" style="display:block;">
+      </div>
+      <div class="review-shot-box reveal" style="transition-delay:.45s;">
+        <img src="review-5.png" alt="Відгук клієнта Muller Arms" loading="lazy" style="display:block;">
+      </div>
+      <div class="review-shot-box reveal" style="transition-delay:.55s;">
+        <img src="review-6.png" alt="Відгук клієнта Muller Arms" loading="lazy" style="display:block;">
+      </div>
+      <div class="review-shot-box reveal" style="transition-delay:.65s;">
+        <img src="review-7.png" alt="Відгук клієнта Muller Arms" loading="lazy" style="display:block;">
+      </div>
+      <div class="review-shot-box reveal" style="transition-delay:.75s;">
+        <img src="review-8.png" alt="Відгук клієнта Muller Arms" loading="lazy" style="display:block;">
       </div>
     </div>
   </div>
@@ -656,7 +705,6 @@ src="https://www.facebook.com/tr?id=1318185053260541&ev=PageView&noscript=1"
   // на сервері Netlify (Site settings → Environment variables:
   // TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID) і використовуються функцією
   // netlify/functions/send-lead.js, яку відвідувач сайту побачити не може.
-
   async function sendLeadToTelegram(formId){
     let text = '';
     if(formId === 'heroForm'){
@@ -676,20 +724,25 @@ src="https://www.facebook.com/tr?id=1318185053260541&ev=PageView&noscript=1"
     }
   }
 
-  function submitForm(formId, successId){
-    sendLeadToTelegram(formId);
-    document.getElementById(formId).style.display = 'none';
-    document.getElementById(successId).classList.add('show');
-    if(typeof fbq === 'function'){ fbq('track', 'Lead'); }
-  }
   function selectPackage(name){
     const sel = document.getElementById('finalPackageSelect');
     for(const opt of sel.options){ if(opt.text === name){ sel.value = opt.value; break; } }
     document.getElementById('final').scrollIntoView({behavior:'smooth'});
+    trackLead();
   }
+
   function scrollWeapons(dir){
     document.getElementById('weaponScroll').scrollBy({left: dir*220, behavior:'smooth'});
   }
+
+  function tFaq(btn){
+    const item = btn.closest('.faq-item');
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if(!wasOpen) item.classList.add('open');
+  }
+
+  // ==== Reveal on scroll ====
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
   }, {threshold:.15});
